@@ -1,10 +1,28 @@
 require.paths.unshift('lib');
 require.paths.unshift('deps/express/lib');
 require('express');
-require('express/plugins');
 
-get('/', function(){
-  this.halt(200, "Hello World!");
-})
+var sys = require('sys');
+var tempalias = require('tempalias');
 
-run()
+var p = tempalias.AliasProvider();
+
+configure('development', function(){
+    enable('show exceptions')
+    enable('throw exceptions')
+});
+
+
+post('/aliases', function(){
+    this.contentType('application/json');
+    if (this.headers['content-type'] != 'application/json'){
+        this.halt(400, JSON.stringify({
+            type: "client",
+            error: "invalid-request-type",
+            description: "invalid request type. Need application/json"
+        }));
+    }
+    return JSON.stringify({foo: "bar"});
+});
+
+run();
