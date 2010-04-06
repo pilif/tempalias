@@ -17,7 +17,6 @@ post('/aliases', function(){
     this.contentType('application/json');
     if (this.headers['content-type'] != 'application/json'){
         this.halt(400, JSON.stringify({
-            type: "client",
             error: "invalid-request-type",
             description: "invalid request type. Need application/json"
         }));
