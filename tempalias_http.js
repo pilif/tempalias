@@ -14,6 +14,8 @@ configure('development', function(){
 
 
 post('/aliases', function(){
+    var self = this;
+
     this.contentType('application/json');
     if (this.headers['content-type'] != 'application/json'){
         this.halt(400, JSON.stringify({
@@ -21,7 +23,26 @@ post('/aliases', function(){
             description: "invalid request type. Need application/json"
         }));
     }
-    return JSON.stringify({foo: "bar"});
+    var len = this.headers['content-length'] || 1024;
+    if (len >= 1024){
+        this.halt(400, JSON.stringify({
+            error: "invalid-content-length",
+            description: "no or too big content length provided"
+
+        }));
+    }
+    var alias = p.getNew();
+    try{
+        alias.setInfo(JSON.parse(this.body));
+    }catch(e){
+        this.halt(400, JSON.stringify({
+            error: "invalid-data",
+            description: e.toString()
+        }));
+    }
+    p.save(alias, function(id){
+        self.halt(200, JSON.stringify(alias));
+    })
 });
 
 run();
