@@ -1,5 +1,6 @@
 require.paths.unshift('lib');
 require.paths.unshift('deps/express/lib');
+require.paths.unshift('deps/redis-node-client/lib');
 require('express');
 
 var sys = require('sys');
