@@ -5,6 +5,7 @@ require('express');
 
 var sys = require('sys');
 var tempalias = require('tempalias');
+var config = require('config');
 
 var p = tempalias.AliasProvider();
 
@@ -46,4 +47,7 @@ post('/aliases', function(){
     })
 });
 
-run();
+run(
+  config.http.port || 8080,
+  config.http.listen || undefined
+);
