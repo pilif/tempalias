@@ -10,8 +10,8 @@ var config = require('config');
 var p = tempalias.AliasProvider();
 
 configure('development', function(){
-    enable('show exceptions')
-    enable('throw exceptions')
+    enable('show exceptions');
+    enable('throw exceptions');
 });
 
 
