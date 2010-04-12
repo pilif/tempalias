@@ -1,0 +1,8 @@
+[http]
+port=8080
+listen=127.0.0.1
+
+[smtp]
+port=2525
+listen=127.0.01
+smarthost=mail.example.com
