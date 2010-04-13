@@ -1,8 +1,10 @@
 [http]
-port=8080
-listen=127.0.0.1
+port=8080                           ; port to listen on for HTTP
+listen=127.0.0.1                    ; interface to bind webserver to (empty for all)
 
 [smtp]
-port=2525
-listen=127.0.01
-smarthost=mail.example.com
+port=2525                           ; port to listen on for SMTP
+listen=127.0.01                     ; interface to bind mailserver to (empty for all)
+smarthost=mail.example.com          ; smarthost to use (mandatory!)
+bannerHostname=nodesmtp.example.com ; banner to use in SMTP transaction (mandatory!)
+maxlength=102400                    ; maximum message size accepted
