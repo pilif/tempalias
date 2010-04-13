@@ -22,7 +22,6 @@ server.hostname = config.smtp.bannerHostname;
 server.runServer();
 
 server.addListener('connect', function( args ) {
-  sys.debug('gnegg');
   // retrieve session and associate our client connection with that
   var session = args[2];
   var client = session.client = new smtp.Client();
@@ -37,14 +36,13 @@ server.addListener('connect', function( args ) {
       });
 });
 
-server.addListener( 'ehlo', function(args){
+server.addListener('ehlo', function(args){
   args[1].emitSuccess(['SIZE '+config.smtp.maxlength]);
 });
 
-server.addListener( 'end', function(args){
+server.addListener('end', function(args){
   var session = args[0];
   if (session.client){
-    sys.debug('disconnecting from remote');
     session.client.quit();
     delete(session.client);
   }
