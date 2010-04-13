@@ -47,3 +47,34 @@ server.addListener('end', function(args){
     delete(session.client);
   }
 });
+
+server.addListener('mail_from', function(args){
+  var addr = args[0], promise = args[1], session = args[2];
+
+  if (!session.client || session.client.socket.readyState != 'open'){
+    promise.emitError(['Upstream connection failed', true]);
+  }
+  session.client.mail(addr)
+    .addCallback(function(){
+      promise.emitSuccess();
+    })
+    .addErrback(function(e){
+      promise.emitError(['Upstream denied from: '+e.data[0], true, e.status]);
+    });
+});
+
+server.addListener('rcpt_to', function(args){
+  var addr = args[0], promise = args[1], session = args[2];
+  addr = 'pilif@gnegg.ch'; // let's simulate alias expansion here!
+
+  if (!session.client || session.client.socket.readyState != 'open'){
+    promise.emitError(['Upstream connection failed', true]);
+  }
+  session.client.rcpt(addr)
+    .addCallback(function(){
+      promise.emitSuccess(addr);
+    })
+    .addErrback(function(e){
+      promise.emitError(['Upstream denied from: '+e.data[0], true, e.status]);
+    });
+});
