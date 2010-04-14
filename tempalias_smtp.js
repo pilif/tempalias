@@ -64,3 +64,25 @@ server.addListener('rcpt_to', function(args){
         });
   }
 });
+
+server.addListener('mail_from', function(args){
+  var addrLine = args[0].split(/\s+/), promise = args[1], session = args[2];
+  var i = 0;
+
+  if (! addrLine[0].match(/^[^@]+@[^@.][^@]+\.[^@.]+$/)){
+    promise.emitError(["keep address simpler. Please. We only support user@host.domain", true, 501]);
+    return;
+  }
+  for (i = 1; i < addrLine.length; i++){
+    var sz = addrLine[i].match(/^SIZE=(\d+)/i);
+    if (!sz){
+      promise.emitError(["invalid argument", false, 501]);
+      return;
+    }
+    if (parseInt(sz[1], 10) > config.smtp.maxlength){
+      promise.emitError(['message would exceed size limit', false, 552]);
+      return;
+    }
+  }
+  promise.emitSuccess(addrLine[0]);
+});
