@@ -115,6 +115,13 @@ server.addListener('data_available', function(args){
     promise.emitError(['Data size exceeded', true, 552]);
     return;
   }
+  if (!session.received_added){
+    data = 'Received: from ' + session.socket.remoteAddress + "\n" +
+           '        by ' + config.smtp.bannerHostname +
+               ' with ' + (session.esmtp ? 'ESMTP' : 'SMTP') + " id;\n" +
+           '        ' + new Date().toUTCString() + "\n" + data;
+    session.received_added = true;
+  }
 
   session.client.sendData(data)
     .addCallback(function(){
