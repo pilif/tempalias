@@ -86,3 +86,52 @@ server.addListener('mail_from', function(args){
   }
   promise.emitSuccess(addrLine[0]);
 });
+
+server.addListener('data', function(args){
+  var promise = args[1], session = args[2];
+
+  if (!session.client || session.client.socket.readyState != 'open'){
+    promise.emitError(['Upstream connection failed', true]);
+    return;
+  }
+
+  session.client.beginData()
+    .addErrback(function(e){ promise.emitError(["upstream denied data: " + e.data[0], true, e.status]); })
+    .addCallback(function(){
+      session.data_counter = 0;
+      promise.emitSuccess();
+    });
+});
+
+server.addListener('data_available', function(args){
+  var data = args[0], promise = args[1], session = args[2];
+
+  if (!session.client || session.client.socket.readyState != 'open'){
+    promise.emitError(['Upstream connection failed', true]);
+    return;
+  }
+  session.data_counter += data.length;
+  if (session.data_counter > config.smtp.maxlength + 100){
+    promise.emitError(['Data size exceeded', true, 552]);
+    return;
+  }
+
+  session.client.sendData(data)
+    .addCallback(function(){
+      promise.emitSuccess();
+  });
+});
+
+server.addListener('data_end', function(args){
+  var data = args[0], promise = args[1], session = args[2];
+
+  if (!session.client || session.client.socket.readyState != 'open'){
+    promise.emitError(['Upstream connection failed', true]);
+    return;
+  }
+  session.client.endData()
+    .addErrback(function(e){ promise.emitError(["upstream denied data: " + e.data[0], true, e.status]); })
+    .addCallback(function(){
+      promise.emitSuccess();
+    });
+});
