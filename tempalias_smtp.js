@@ -46,7 +46,7 @@ server.addListener('rcpt_to', function(args){
   }
 
   if (session.client){
-    if (!session.client || session.client.socket.readyState != 'open'){
+    if (session.client.socket.readyState != 'open'){
       promise.emitError(['Upstream connection failed', true]);
       return;
     }
