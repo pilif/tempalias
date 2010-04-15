@@ -48,7 +48,8 @@ server.addListener('rcpt_to', function(args){
     return;
   }
 
-  aliasProvider.findById(addr[0], function(alias){
+  // true means: Use up one Invocation
+  aliasProvider.findById(addr[0], true, function(alias){
     if (!alias){
       promise.emitError(['User unknown', false, 550]);
       return;
