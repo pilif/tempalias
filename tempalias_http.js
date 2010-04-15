@@ -47,7 +47,9 @@ post('/aliases', function(){
     })
 });
 
-run(
-  config.http.port || 8080,
-  config.http.listen || undefined
-);
+require('redis').client.stream.addListener("connect", function (){
+  run(
+    config.http.port || 8080,
+    config.http.listen || undefined
+  );
+});

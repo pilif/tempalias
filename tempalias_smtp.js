@@ -19,7 +19,10 @@ var server = new smtp.Server();
 server.port = config.smtp.port;
 server.host = config.smtp.listen;
 server.hostname = config.smtp.bannerHostname;
-server.runServer();
+
+require('redis').client.stream.addListener("connect", function (){
+  server.runServer();
+});
 
 server.addListener('ehlo', function(args){
   args[1].emitSuccess(['SIZE '+config.smtp.maxlength]);
