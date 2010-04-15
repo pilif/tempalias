@@ -5,6 +5,9 @@ require.paths.unshift('deps/node-smtp/lib');
 var smtp = require('smtp');
 var config = require('config');
 var sys = require('sys');
+var tempalias = require('tempalias');
+
+var aliasProvider = tempalias.AliasProvider;
 
 if (!config.smtp.smarthost){
   sys.debug('Smarthost not configured. Cannot start');
@@ -38,34 +41,48 @@ server.addListener('end', function(args){
 
 server.addListener('rcpt_to', function(args){
   var addr = args[0], promise = args[1], session = args[2];
-  addr = 'pilif@gnegg.ch'; // let's simulate alias expansion here!
 
-  var setRecipient = function(addr){
-    session.client.rcpt(addr)
-      .addErrback(function(e){args[1].emitError(['Upstream denied from: '+e.data[0], true, e.status])})
-      .addCallback(function(){
-        promise.emitSuccess(addr);
-      });
+  addr = addr.split('@');
+  if (config.smtp.domains.indexOf(addr[1]) == -1){
+    promise.emitError(['Relaying denied', false, 553]);
+    return;
   }
 
-  if (session.client){
-    if (session.client.socket.readyState != 'open'){
-      promise.emitError(['Upstream connection failed', true]);
+  aliasProvider.findById(addr[0], function(alias){
+    if (!alias){
+      promise.emitError(['User unknown', false, 550]);
       return;
     }
-    setRecipient();
-  }else{
-    var client = session.client = new smtp.Client();
-    client.connect(25, config.smtp.smarthost)
-        .addErrback(function(e){ args[1].emitError(['Failure to connect to upstream server: '+e, true]); })
+    var target = alias.target;
+
+    var setRecipient = function(addr){
+      session.client.rcpt(addr)
+        .addErrback(function(e){args[1].emitError(['Upstream denied from: '+e.data[0], true, e.status])})
         .addCallback(function(){
-          client.mail(session.fromAddress)
-            .addErrback(function(e){args[1].emitError(['Upstream denied from: '+e.data[0], true, e.status])})
-            .addCallback(function(){
-              setRecipient(addr);
-            });
+          promise.emitSuccess(addr);
         });
-  }
+    };
+
+    if (session.client){
+      if (session.client.socket.readyState != 'open'){
+        promise.emitError(['Upstream connection failed', true]);
+        return;
+      }
+      setRecipient(target);
+    }else{
+      var client = session.client = new smtp.Client();
+      client.connect(25, config.smtp.smarthost)
+          .addErrback(function(e){ args[1].emitError(['Failure to connect to upstream server: '+e, true]); })
+          .addCallback(function(){
+            client.mail(session.fromAddress)
+              .addErrback(function(e){args[1].emitError(['Upstream denied from: '+e.data[0], true, e.status])})
+              .addCallback(function(){
+                setRecipient(target);
+              });
+          });
+    }
+
+  })
 });
 
 server.addListener('mail_from', function(args){
