@@ -7,7 +7,7 @@ var sys = require('sys');
 var tempalias = require('tempalias');
 var config = require('config');
 
-var p = tempalias.AliasProvider();
+var p = tempalias.AliasProvider;
 
 configure('development', function(){
     enable('show exceptions');
