@@ -1,5 +1,5 @@
 {
     "target": "pilif@gnegg.ch",
-    "valid-from": "2010-04-01 00:00:00",
-    "valid-until": "2010-04-10"
+    "days": 3,
+    "max-usage": 5
 }
