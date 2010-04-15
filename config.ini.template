@@ -8,3 +8,4 @@ listen=127.0.01                     ; interface to bind mailserver to (empty for
 smarthost=mail.example.com          ; smarthost to use (mandatory!)
 bannerHostname=nodesmtp.example.com ; banner to use in SMTP transaction (mandatory!)
 maxlength=102400                    ; maximum message size accepted
+domains=tempalias.com,tempalias.net ; domains considered local. comma separated
