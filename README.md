@@ -10,4 +10,4 @@ Basically, this will be the same thing as the various throw-away-email-address-s
 
 This of course means that there isn't that much in ways of monetization, but thankfully, I don't require this to be profitable at all, but I'm using it as a nice way to learn node.js which, in turn, will give YOU, dear user, a superior service.
 
-Please give me a couple of weeks to make this work though - this is my very first node.js/express code ever, so I expect a couple of pitfalls on the way
+Please give me a couple of weeks to make this work though - this is my very first node.js code ever, so I expect a couple of pitfalls on the way
