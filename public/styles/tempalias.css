@@ -1,0 +1,11 @@
+html{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0 url('../images/bgc.png') bottom left repeat-x;
+}
