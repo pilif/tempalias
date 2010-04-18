@@ -17,7 +17,7 @@ require('redis').client.stream.addListener("connect", function (){
 
   http.createServer(function(req, res) {
     if (req.url == '/aliases'){
-      var headers = {"Content-Type": "application/json"};
+      var headers = {"Content-Type": "application/json", 'Date': (new Date()).toUTCString()};
       var err = function(code, resp){
         var body = JSON.stringify(resp);
         headers['Content-Length'] = body.length;
@@ -80,6 +80,7 @@ require('redis').client.stream.addListener("connect", function (){
     // other cases: Divert to paperboy
     paperboy
         .deliver(__dirname + '/public', req, res)
+        .addHeader('Date', (new Date()).toUTCString())
         .error(function(statCode,msg) {
           res.writeHead(statCode, {'Content-Type': 'text/plain'});
           res.write("Error: " + statCode);
