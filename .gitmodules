@@ -1,9 +1,9 @@
-[submodule "deps/express"]
-	path = deps/express
-	url = git://github.com/visionmedia/express.git
 [submodule "deps/redis-node-client"]
 	path = deps/redis-node-client
 	url = git://github.com/fictorial/redis-node-client.git
 [submodule "deps/node-smtp"]
 	path = deps/node-smtp
 	url = git://github.com/pilif/node-smtp.git
+[submodule "deps/node-paperboy"]
+	path = deps/node-paperboy
+	url = git://github.com/felixge/node-paperboy.git
