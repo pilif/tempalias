@@ -1,6 +1,6 @@
 [submodule "deps/redis-node-client"]
 	path = deps/redis-node-client
-	url = git://github.com/fictorial/redis-node-client.git
+	url = git://github.com/pilif/redis-node-client.git
 [submodule "deps/node-smtp"]
 	path = deps/node-smtp
 	url = git://github.com/pilif/node-smtp.git
