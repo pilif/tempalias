@@ -7,19 +7,36 @@ var config = require('config');
 var fs = require('fs');
 var sys = require('sys');
 
+var launch = function(){
+  require('redis').client(function(client){
+    fs.writeFile(config.general.pidFile, ""+process.pid, function(err, data){
+        if (err){
+            sys.error("Failed to write PID file ("+ config.general.pidFile+"): " + err);
+            process.exit(1);
+        }
+        require('tempalias_http');
+        require('tempalias_smtp');
+    });
+  });
+};
+
 try{
     var pd = fs.statSync(config.general.pidFile);
-    if (pd.isFile()){
-        sys.error("PID file already exists. Refusing to start");
-        process.exit(2);
-    }    
-}catch(e){}
+}catch(e){
+  pd = null;
+}
 
-fs.writeFile(config.general.pidFile, ""+process.pid, function(err, data){
-    if (err){
-        sys.error("Failed to write PID file ("+ config.general.pidFile+"): " + err);
-        process.exit(1);
+if (pd && pd.isFile()){
+  sys.puts('PID file found. Attempting to kill previous instance if running');
+  fs.readFile(config.general.pidFile, function(err, pid){
+    if (!err){
+      try{
+        process.kill(parseInt(pid, 10), 'SIGTERM');
+      }catch(e){}
     }
-    require('tempalias_http');
-    require('tempalias_smtp');
-});
+    launch();
+  });
+}else{
+  launch();
+}
+
