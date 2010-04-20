@@ -10,7 +10,7 @@ body {
     padding: 0;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Times', sans-serif;
     font-size: 16px;
-    line-height: 28px;
+    line-height: 24px;
     color: #353535;
 }
 
@@ -30,8 +30,8 @@ body {
 #page{
   background: white;
   border-radius: 12px;
-  padding: 60px;
-  min-height: 600px;
+  padding: 50px;
+  min-height: 450px;
 
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
@@ -46,7 +46,7 @@ body {
 }
 
 #page p{
-  margin: 0 0 30px 0;
+  margin: 0 0 23px 0;
 }
 
 #generate-form{
@@ -97,10 +97,12 @@ body {
 }
 
 #footer{
-  margin: 72px 0 0 0 ;
+  margin: 66px 0 0 0 ;
 }
 
 #footer ul{
+  margin: 0;
+  padding: 0;
   text-align: right;
   list-style: none;
 }
@@ -111,9 +113,10 @@ body {
 }
 
 #footer p{
+  line-height: normal;
   font-size: 14px;
-  margin: 15px 0 0 0;
-  padding: 15px 0 0 0;
+  margin: 11px 0 0 0;
+  padding: 11px 0 0 0;
   border-top: 1px solid #d3d3d3;
   color: #d3d3d3;
 }
