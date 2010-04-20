@@ -5,7 +5,65 @@ html{
 }
 
 body {
-    margin: 0;
+    height: 100%;
+    background: #f0f0f0 url('../images/bgc.png') bottom  repeat-x;
+    background-attachment: fixed;
+    margin: 0 0 0 -65px;
     padding: 0;
-    background: #f0f0f0 url('../images/bgc.png') bottom left repeat-x;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Times', sans-serif;
+    font-size: 16px;
+    line-height: 28px;
+    color: #353535;
+}
+
+#spy{
+  margin: 90px auto 64px auto;
+  padding-left: 65px;
+  padding-bottom: 32px;
+  width: 630px;
+  background: transparent url('../images/spy_default.png') bottom left no-repeat;
+}
+
+#page{
+  background: white;
+  border-radius: 15px;
+  padding: 60px;
+  min-height: 600px;
+
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+}
+
+#page h1{
+  color: white;
+  height: 62px;
+  background: #fff url('../images/logo.png') no-repeat;
+  text-indent: -999px;
+  margin: 0 0 35px 0;
+}
+
+#page p{
+  margin: 0 0 30px 0;
+}
+
+#footer{
+  margin: 72px 0 0 0 ;
+}
+
+#footer ul{
+  text-align: right;
+  list-style: none;
+}
+
+#footer ul li{
+  display: inline;
+  margin-left: 18px;
+}
+
+#footer p{
+  font-size: 14px;
+  margin: 15px 0 0 0;
+  padding: 15px 0 0 0;
+  border-top: 1px solid #d3d3d3;
+  color: #d3d3d3;
 }
