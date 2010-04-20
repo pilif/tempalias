@@ -22,13 +22,16 @@
         <div id="generate-form">
           <form action="">
             <table>
-              <tr>
+              <tr id="target_selection">
                 <th>Your real email:</th>
-                <td>Element</td>
+                <td><input type="text" name="target" id="target" /></td>
               </tr>
-              <tr>
+              <tr id="validity_selection">
                 <th>Alias valid for:</th>
-                <td>Alias validity</td>
+                <td>
+                  <input type="text" name="days" id="days" /> day(s) or
+                  <input type="text" name="max-usage" id="max-usage" /> received messages
+                </td>
               </tr>
             </table>
             <button type="submit">Generate Alias</button>
