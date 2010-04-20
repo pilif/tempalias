@@ -17,21 +17,28 @@ body {
 }
 
 #spy{
-  margin: 90px auto 64px auto;
   padding-left: 65px;
   padding-bottom: 32px;
-  width: 630px;
-  background: transparent url('../images/spy_default.png') bottom left no-repeat;
+  background: transparent url('../images/spy_default.png') left bottom  no-repeat;
 }
+
+#page-container{
+  margin: 90px auto 0 auto;
+  width: 692px;
+  background: transparent url('../images/frame_reflection.png') 63px bottom no-repeat;
+  padding-bottom: 32px; /* image.height - #spy.paddingBottom */
+}
+
+
 
 #page{
   background: white;
-  border-radius: 15px;
+  border-radius: 12px;
   padding: 60px;
   min-height: 600px;
 
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
 }
 
 #page h1{
