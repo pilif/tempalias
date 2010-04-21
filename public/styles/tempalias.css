@@ -104,16 +104,20 @@ body {
   margin: 66px 0 0 0 ;
 }
 
-#footer ul{
+#footer ul, #playground ul#topnav{
   margin: 0;
   padding: 0;
   text-align: right;
   list-style: none;
 }
 
-#footer ul li{
+#footer ul li, #playground ul#topnav li{
   display: inline;
   margin-left: 18px;
+}
+
+#playground ul#topnav {
+  padding-bottom: 40px;
 }
 
 #footer p{
