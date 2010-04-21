@@ -1,0 +1,43 @@
+<ul id="topnav">
+  <li><a href="#/">Generate Alias</a></li>
+  <li><a href="#/about">About</a></li>
+  <li><a href="#/privacy">Privacy</a></li>
+</ul>
+<h2>What we do</h2>
+
+<p>We store the information you provide when creating the alias so we can
+  redirect mail sent to that alias and expire it as needed.</p>
+
+<p>We use the Google Analytics service to get an idea how the website is being
+  used and how much it's accessed.</p>
+
+<p>All mail sent to us will be forwarded to a smart host which will log the
+  target address but no other information contained in the alias (it can't -
+  that information was lost already when it sees the email).</p>
+
+<p>We will (once we get around to implement it) the settings you last used to
+  create an alias in a cookie, so we can preset those when you visit our
+  site again.</p>
+
+<p>We do currently keep the alias around for longer than what is strictly
+  needed, but it's impossible to send email to an expired alias and there's
+  no way to re-enable a once expired alias. Once we get around to actually
+  write some garbage collecting code, we'll regularly prune expired aliases.
+</p>
+
+<h2>What we don't do</h2>
+<p>We don't log the emails content.</p>
+<p>We don't log alias resolutions and their state.</p>
+<p>We will never use the target address you provided for anything other
+  than to relay mail to it within the validity settings you have chosen.
+  We will never send any email out that is not in the context of
+  an alias resolution.</p>
+<p>We don't associate any information gathered by Google Analytics with any
+  email alias the website visit generated.</p>
+
+<p>We hope that these statements clearly show our intentions. If you have
+  a concern about something we have forgotten to list above, please contact
+  us at <a href="mailto:pilif@gnegg.ch">pilif@gnegg.ch</a>. If you are capable
+  of reading JavaScript code, you can have a look at the code that's running
+  tempalias.com on
+  <a href="http://github.com/pilif/tempalias">http://github.com/pilif/tempalias</a>.</p>
