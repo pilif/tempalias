@@ -9,7 +9,7 @@
   <span class="sidenote">(<a href="#/about">What is this good for?</a>)</span></p>
 
 <div id="generate-form">
-  <form action="">
+  <form action="#/buildalias" method="post">
     <table>
       <tr id="target_selection">
         <th>Your real email:</th>
