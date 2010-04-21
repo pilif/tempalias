@@ -1,0 +1,22 @@
+<h2>Error</h2>
+<p>It looks as if the server wasn't able to process your request. We're really
+sorry. Here's what we know about the problem:</p>
+
+<div id="errinfo">
+<table>
+    <tr>
+        <th>HTTP Code</th>
+        <td><%= code %></td>
+    </tr>
+    <tr>
+        <th>Error-Type</th>
+        <td><%= error %></td>
+    </tr>
+    <tr>
+        <th>Error-Description</th>
+        <td><%= description %></td>
+    </tr>
+</table>
+
+<a href="#/form">Try again</a>
+</div>

@@ -175,3 +175,19 @@ body {
   border-top: 1px solid #d3d3d3;
   color: #d3d3d3;
 }
+
+#errinfo th{
+  text-align: left;
+  font-size: 1em;
+  padding-right: 10px;
+}
+
+#errinfo th, #errinfo td{
+  vertical-align: top;
+}
+
+#errinfo a {
+  margin-top: 20px;
+  display: block;
+  text-align: right;
+}
