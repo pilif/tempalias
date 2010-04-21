@@ -23,6 +23,6 @@
         </td>
       </tr>
     </table>
-    <button type="submit">Generate Alias</button>
+    <p id="error">Provide a target and time or usage</p><button type="submit">Generate Alias</button>
   </form>
 </div>
