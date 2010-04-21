@@ -59,6 +59,9 @@ body {
   margin: 0 0 23px 0;
 }
 
+#page span.sidenote{
+  font-size: 0.8em;
+}
 #generate-form{
   background: url('../images/bgform.png') 0 0 repeat-x;
   height: 123px; /* image height - 2xpadding */
