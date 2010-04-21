@@ -5,7 +5,9 @@ html{
 }
 
 body {
-    background: #a8a8a8 url('../images/bgc.png') top repeat-x;
+    height: 100%;
+    background: #f0f0f0 url('../images/bgc.png') bottom  repeat-x;
+    background-attachment: fixed;
     margin: 0 0 0 -65px;
     padding: 0;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Times', sans-serif;
@@ -26,6 +28,8 @@ body {
   background: transparent url('../images/frame_reflection.png') 63px bottom no-repeat;
   padding-bottom: 32px; /* image.height - #spy.paddingBottom */
 }
+
+
 
 #page{
   background: white;
