@@ -64,6 +64,10 @@ body {
   text-align: left;
 }
 
+#playground{
+  min-height: 270px;
+}
+
 #generate-form table th, #generate-form table td {
   padding-bottom: 15px;
 }

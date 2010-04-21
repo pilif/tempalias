@@ -1,0 +1,23 @@
+<p>Generate an anonymous alias that will forward to your real email
+  address. It will automatically be deleted after either your set time
+  or message limit has been reached.
+  <span>(What is this good for?)</span></p>
+
+<div id="generate-form">
+  <form action="">
+    <table>
+      <tr id="target_selection">
+        <th>Your real email:</th>
+        <td><input type="text" name="target" id="target" value="<%= e(target) %>" /></td>
+      </tr>
+      <tr id="validity_selection">
+        <th>Alias valid for:</th>
+        <td>
+          <input type="text" name="days" id="days" value="<%= e(days) %>" /> day(s) or
+          <input type="text" name="max-usage" id="max-usage" value="<%= e(maxUsage) %>" /> received messages
+        </td>
+      </tr>
+    </table>
+    <button type="submit">Generate Alias</button>
+  </form>
+</div>

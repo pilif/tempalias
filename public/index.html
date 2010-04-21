@@ -5,6 +5,7 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="jslib/sammy-0.5.0.min.js"></script>
   <script type="text/javascript" src="jslib/plugins/sammy.template-0.5.0.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="jslib/app.js"></script>
   <link rel="stylesheet" type="text/css" href="styles/tempalias.css"/>
 </head>
 <body>
@@ -13,36 +14,14 @@
     <div id="page">
       <div id="content">
         <h1>tempalias</h1>
-
-        <p>Generate an anonymous alias that will forward to your real email
-          address. It will automatically be deleted after either your set time
-          or message limit has been reached.
-          <span>(What is this good for?)</span></p>
-
-        <div id="generate-form">
-          <form action="">
-            <table>
-              <tr id="target_selection">
-                <th>Your real email:</th>
-                <td><input type="text" name="target" id="target" /></td>
-              </tr>
-              <tr id="validity_selection">
-                <th>Alias valid for:</th>
-                <td>
-                  <input type="text" name="days" id="days" /> day(s) or
-                  <input type="text" name="max-usage" id="max-usage" /> received messages
-                </td>
-              </tr>
-            </table>
-            <button type="submit">Generate Alias</button>
-          </form>
+        <div id="playground">
         </div>
       </div>
       <div id="footer">
         <ul>
-          <li>Generate Alias</li>
-          <li>About</li>
-          <li>Privacy</li>
+          <li><a href="#/">Generate Alias</a></li>
+          <li><a href="#/about">About</a></li>
+          <li><a href="#/privacy">Privacy</a></li>
         </ul>
         <p>This site is running the tempalias open source project available<br/>
           under the MIT license at http://github.com/pilif/tempalias</p>
