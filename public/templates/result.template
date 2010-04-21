@@ -1,0 +1,11 @@
+<script type="text/javascript">
+  jQuery(function(){
+    Tempalias.setSpy('happy');
+  })
+</script>
+All done! Your temporary alias is:
+
+<%= aid %>@tempalias.com
+
+<a href="#/form">Try again</a>
+
