@@ -4,3 +4,6 @@
 [submodule "deps/node-smtp"]
 	path = deps/node-smtp
 	url = git://github.com/pilif/node-smtp.git
+[submodule "deps/node-paperboy"]
+	path = deps/node-paperboy
+	url = git://github.com/pilif/node-paperboy.git
