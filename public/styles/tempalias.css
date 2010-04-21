@@ -4,6 +4,16 @@ html{
     padding: 0;
 }
 
+a{
+  text-decoration: none;
+}
+a:link, a:hover, a:active{
+  color: #08417b;
+}
+a:visited{
+  color: #a4a4a4;
+}
+
 body {
     height: 100%;
     background: #f0f0f0 url('../images/bgc.png') bottom  repeat-x;
