@@ -27,10 +27,24 @@ body {
 }
 
 #spy{
-  padding-left: 65px;
   padding-bottom: 32px;
+}
+
+#spy.default{
+  padding-left: 65px;
   background: transparent url('../images/spy_default.png') left bottom  no-repeat;
 }
+
+#spy.happy{
+  padding-left: 98px;
+  background: transparent url('../images/spy_happy.png') left bottom  no-repeat;
+}
+
+#spy.secretive{
+  padding-left: 71px;
+  background: transparent url('../images/spy_secretive.png') left bottom  no-repeat;
+}
+
 
 #page-container{
   margin: 90px auto 0 auto;

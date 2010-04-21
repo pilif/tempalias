@@ -1,3 +1,8 @@
+<script type="text/javascript">
+  jQuery(function(){
+    Tempalias.setSpy();
+  })
+</script>
 <p>Generate an anonymous alias that will forward to your real email
   address. It will automatically be deleted after either your set time
   or message limit has been reached.
