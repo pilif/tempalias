@@ -1,7 +1,9 @@
 <script type="text/javascript">
   jQuery(function(){
     Tempalias.setSpy('happy');
-  })
+  });
+  if (pageTracker)
+    pageTracker._trackPageview("/result");
 </script>
 All done! Your temporary alias is:
 
