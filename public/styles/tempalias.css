@@ -18,7 +18,7 @@ body {
     height: 100%;
     background: #f0f0f0 url('../images/bgc.png') bottom  repeat-x;
     background-attachment: fixed;
-    margin: 0 0 0 -65px;
+    margin: 0 0 0 -98px;
     padding: 0;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Times', sans-serif;
     font-size: 16px;
@@ -28,28 +28,26 @@ body {
 
 #spy{
   padding-bottom: 32px;
+  padding-left: 98px;
 }
 
 #spy.default{
-  padding-left: 65px;
   background: transparent url('../images/spy_default.png') left bottom  no-repeat;
 }
 
 #spy.happy{
-  padding-left: 98px;
   background: transparent url('../images/spy_happy.png') left bottom  no-repeat;
 }
 
 #spy.secretive{
-  padding-left: 71px;
   background: transparent url('../images/spy_secretive.png') left bottom  no-repeat;
 }
 
 
 #page-container{
   margin: 90px auto 0 auto;
-  width: 692px;
-  background: transparent url('../images/frame_reflection.png') 63px bottom no-repeat;
+  width: 728px;
+  background: transparent url('../images/frame_reflection.png') 98px bottom no-repeat;
   padding-bottom: 32px; /* image.height - #spy.paddingBottom */
 }
 

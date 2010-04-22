@@ -6,9 +6,6 @@ Tempalias = {};
 
     spy = spy || 'default';
     $('#spy')[0].className = spy;
-    margCorr = -parseInt($('#spy').css('padding-left'), 10);
-    $('body').css('margin-left', margCorr + 'px');
-
   };
   Tempalias.app = $.sammy((function(){
     return function(){
