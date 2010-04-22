@@ -21,6 +21,9 @@
           return false;
         }
       });
+      if (!('autofocus' in document.createElement('input'))){
+          inputs[0].focus();
+      }
     });
   }(jQuery));
 </script>
@@ -34,7 +37,7 @@
     <table>
       <tr id="target_selection">
         <th>Your real email:</th>
-        <td><input type="text" name="target" id="target" value="<%= e(target) %>" /></td>
+        <td><input type="text" name="target" id="target" value="<%= e(target) %>" autofocus="autofocus" /></td>
       </tr>
       <tr id="validity_selection">
         <th>Alias valid for:</th>
