@@ -5,7 +5,21 @@
 </script>
 All done! Your temporary alias is:
 
-<%= alias.aid %>@tempalias.com
-
+<div id="alias-generated">
+<p id="alias"><%= alias.aid %>@tempalias.com</p>
+<p id="target"><span>→</span> <%= alias.target %></p>
+<p id="result-text">
+  <% if (alias.days && alias['max_usage']){ %>
+    After <strong><%= alias.days %> days</strong> have passed or
+    <strong><%= alias['max_usage'] %> messages</strong> have been received,
+  <% }else if(alias.days){ %>
+    After <strong><%= alias.days %> days</strong> have passed,
+  <% }else{ %>
+    After <strong><%= alias['max_usage'] %> messages</strong> have been received,
+  <% } %>
+    this alias will be deleted automatically, irreversibly and without a trace
+    for the sender.
+</p>
+</div>
 <a id="tryagain" href="#/form">Need another?</a>
 

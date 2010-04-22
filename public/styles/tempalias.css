@@ -193,3 +193,31 @@ a#tryagain {
   display: block;
   text-align: right;
 }
+
+#alias-generated{
+  background: url('../images/bgdone.png') 0 0 repeat-x;
+  height: 123px; /* image height - 2xpadding */
+  border-radius: 12px;
+  padding: 25px;
+  margin: 25px 0 0 0;
+  font-size: 0.9em;
+
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+}
+
+#alias-generated #alias{
+  color: #72a100;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 2px 0;
+  padding: 0;
+}
+#alias-generated #target{
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+#alias-generated #target span{
+  color: #72a100;
+  font-weight: bold;
+}
