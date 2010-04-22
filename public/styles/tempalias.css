@@ -188,7 +188,7 @@ body {
   vertical-align: top;
 }
 
-#errinfo a {
+a#tryagain {
   margin-top: 20px;
   display: block;
   text-align: right;
