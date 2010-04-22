@@ -27,13 +27,13 @@ Tempalias = {};
         this.app.last_location = null;
       });
 
-      this.get('#/form', function(context){
+      this.get('#!/form', function(context){
         this.app.last_location = null;
         this.app.setLocation('#/');
         this.app.trigger('location-changed');
       });
 
-      this.get('#/:page', function(context){
+      this.get('#!/:page', function(context){
         $.ajax({
           url: 'templates/'+this.params['page']+'.html',
           dataType: 'html',
