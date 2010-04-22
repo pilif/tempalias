@@ -33,11 +33,6 @@ Tempalias = {};
         this.app.trigger('location-changed');
       });
 
-      this.get('#/buildalias', function(context){
-        context.$element().html('gnegg');
-
-      });
-
       this.get('#/:page', function(context){
         $.ajax({
           url: 'templates/'+this.params['page']+'.html',
@@ -46,7 +41,6 @@ Tempalias = {};
             context.$element().html(data);
           },
           error: function(){
-            console.log(arguments);
             context.partial('templates/notfound.html');
           }
         });
