@@ -6,15 +6,15 @@ sorry. Here's what we know about the problem:</p>
 <table>
     <tr>
         <th>HTTP Code</th>
-        <td><%= code %></td>
+        <td><%= error.code %></td>
     </tr>
     <tr>
         <th>Error-Type</th>
-        <td><%= error %></td>
+        <td><%= error.error %></td>
     </tr>
     <tr>
         <th>Error-Description</th>
-        <td><%= description %></td>
+        <td><%= error.description %></td>
     </tr>
 </table>
 

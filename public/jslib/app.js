@@ -82,12 +82,12 @@ Tempalias = {};
           contentType: 'application/json',
           data: JSON.stringify(alias),
           success: function(data) {
-             context.partial('templates/result.template', data);
+             context.partial('templates/result.template', {alias: data});
           },
           error: function(req){
             var err = JSON.parse(req.responseText);
             err.code = req.status;
-            context.partial('templates/error.template', err);
+            context.partial('templates/error.template', {error: err});
            }
          });
       });

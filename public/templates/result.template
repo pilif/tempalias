@@ -5,7 +5,7 @@
 </script>
 All done! Your temporary alias is:
 
-<%= aid %>@tempalias.com
+<%= alias.aid %>@tempalias.com
 
 <a id="tryagain" href="#/form">Need another?</a>
 
