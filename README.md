@@ -1,13 +1,50 @@
-Nothing to see here yet.
+Introduction
+============
 
-When it's finished, it'll be a year 2010 compliant version of my self-destructing email solution I outlined back in 2002 on my old website at http://www.pilif.ch/stuff/adaddr/index.php
+The code you see here is the code that runs behind the site tempalias.com
 
-Back then, it was perl and plugging into your own mail server.
+tempalias.com allows you to create email aliases for any email address of your chosing. These aliases self-destruct after any mount of time or after any amount of messages sent trough.
 
-Now it's node.js and providing my own web application for creating aliases and mail server for handling incoming mail. This way, users are not required to run their own mail server.
+The project is written in JavaScript intended to be run under node.js.
 
-Basically, this will be the same thing as the various throw-away-email-address-services out there with the exception that this will create a temporary alias that redirects incoming mail directly to your inbox instead of forcing you to go over some crappy (and ad filled) web interface.
+Requirements
+============
 
-This of course means that there isn't that much in ways of monetization, but thankfully, I don't require this to be profitable at all, but I'm using it as a nice way to learn node.js which, in turn, will give YOU, dear user, a superior service.
+To run the tempalias.com code, you need:
 
-Please give me a couple of weeks to make this work though - this is my very first node.js code ever, so I expect a couple of pitfalls on the way
+* a sufficiently current version of node (as of this writing, 0.1.90 was enough)
+* a sufficiently current version of redis (I was running trunk) for alias storage
+
+Everything else is included in the package.
+
+Running it
+==========
+
+After cloning the repository, here's the stuff you need to do:
+
+1. initialize the git submodules (`git submodule update --init`)
+1. copy config.ini.template to config.ini and edit to your liking
+2. run `node tempalias.js` in the project root.
+
+tempalias will launch a web server (localhost:8080 by default) and an SMTP proxy (localhost:2525 by default). The website will be both the web frontend (http://locahost:8080/) and a webservice endpoint (http://localhost:8080/aliases). Have a look at public/jslib/app.js to see how the web service works, or use curl and adjust the following command to your liking:
+
+    curl --no-keepalive -H "Content-Type: application/json" \
+      --data-binary '{"target": "zx24rg@yahoo.com","days": 3,"max-usage": 5}'\
+      -qsS http://localhost:8080/aliases
+
+Architecture
+=============
+
+The frontend code is pure HTML/CSS/JavasScript using Sammy for the interesting part of the logic. You will find that in public/*. The beef of the code lies in the SMTP proxy (`lib/tempalias_smtp.js`) and in the model class representing an alias (`lib/tempalias.js`). Static webpages are served by the web server (`lib/tempalias_http.js`) using node-paperboy which is - as are all other dependencies - located in `deps/` as a git submodule.
+
+License
+=======
+
+All the main code is licensed under the MIT license (see LICENSE) (lib/uuid.js is dual-licensed under GPL and MIT)
+
+* node-paperboy is licensed under the MIT license.
+* node-smtp is licensed under the MIT license (and had been heavily modified by me to actually provide a working SMTP daemon)
+* redis-node-client is licensed under the MIT license
+
+
+This should be enough to get you going. Please have a look at the bugs tab on my github page to get an idea of the currently known issues.
