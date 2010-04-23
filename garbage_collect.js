@@ -24,7 +24,8 @@ require('redis').client(function(client){
 
           if (qc == data.length){
             sys.puts("Pruning: "+garbage.join(', '));
-            client.del(garbage, function(err, data){
+            client.del(garbage.join(' '), function(err, data){
+              sys.p(data + ' aliases removed');
               client.close();
             });
           }
