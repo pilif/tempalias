@@ -31,6 +31,9 @@
    highly concurrent stress.
 </p>
 <p>We prune expired aliases every 30 minutes. This process is irreversible.</p>
+<p>We keep a list of every alias ever generated as to make sure that nobody else gets an alias
+   that was previously generated for you. All other information stored with the alias
+   (besides its name) is deleted on expiration though.</p>
 
 <h2>What we don't do</h2>
 <p>We don't log the emails content.</p>
