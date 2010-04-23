@@ -19,8 +19,10 @@ require('redis').client(function(client){
       (function(aid){
         p.findById(aid.substr(8, aid.length), false, function(alias){
           qc++;
-          if (!alias)
+          if (!alias){
             garbage.unshift(aid);
+            garbage.unshift('counter:'+aid.substr(8, aid.length));
+          }
 
           if (qc == data.length){
             sys.puts("Pruning: "+garbage.join(', '));
