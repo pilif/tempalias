@@ -7,6 +7,10 @@ var config = require('config');
 var fs = require('fs');
 var sys = require('sys');
 
+process.addListener('uncaughtException', function (err) {
+  sys.error('Caught exception: ' + err);
+});
+
 var launch = function(){
   require('redis').client(function(client){
     fs.writeFile(config.general.pidFile, ""+process.pid, function(err, data){
