@@ -26,6 +26,8 @@ After cloning the repository, here's the stuff you need to do:
 1. initialize the git submodules (`git submodule update --init`)
 1. copy config.ini.template to config.ini and edit to your liking
 1. run `node tempalias.js` in the project root.
+1. expired aliases are not deleted by the main application. They can't be reached via email any more, but they remain in 
+   the database. There is `garbage_collect.js` which I recommend you run every 30 minutes or so that removes expired aliases.
 
 tempalias will launch a web server (localhost:8080 by default) and an SMTP proxy (localhost:2525 by default). The website will be both the web frontend (http://locahost:8080/) and a webservice endpoint (http://localhost:8080/aliases). Have a look at public/jslib/app.js to see how the web service works, or use curl and adjust the following command to your liking:
 
