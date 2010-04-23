@@ -26,11 +26,11 @@
   create an alias in a cookie, so we can preset those when you visit our
   site again.</p>
 
-<p>We do currently keep the alias around for longer than what is strictly
-  needed, but it's impossible to send email to an expired alias and there's
-  no way to re-enable a once expired alias. Once we get around to actually
-  write some garbage collecting code, we'll regularly prune expired aliases.
+<p>We cannot delete an expired alias the moment it expires, but it's guaranteed
+   to be impossible for an email to be delivered to an expired alias - even under
+   highly concurrent stress.
 </p>
+<p>We prune expired aliases every 30 minutes. This process is irreversible.</p>
 
 <h2>What we don't do</h2>
 <p>We don't log the emails content.</p>
