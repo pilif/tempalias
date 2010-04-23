@@ -61,7 +61,6 @@ Tempalias = {};
           "max-usage": valn($('#max-usage').val())
         };
         if (!alias.target || (!alias.days && !alias['max-usage'])){
-          console.log(alias);
           var e = $('#error');
           e.show();
           setTimeout(function(){e.fadeOut('slow');}, 1000);
