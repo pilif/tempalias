@@ -25,11 +25,17 @@ require('redis').client(function(client){
           }
 
           if (qc == data.length){
-            sys.puts("Pruning: "+garbage.join(', '));
-            client.del(garbage.join(' '), function(err, data){
-              sys.p(data + ' aliases removed');
+            if (garbage.length > 0){
+              sys.puts("Pruning: "+garbage.join(', '));
+              garbage[garbage.length] = function(err, data){
+                sys.p(data + ' sets removed');
+                client.close();
+              }
+              client.del.apply(client, garbage);
+            }else{
+              sys.puts("Nothing to prune");
               client.close();
-            });
+            }
           }
         });
       }(""+data[i]));
