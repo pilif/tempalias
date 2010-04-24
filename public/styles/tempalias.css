@@ -7,11 +7,8 @@ html{
 a{
   text-decoration: none;
 }
-a:link, a:hover, a:active{
-  color: #08417b;
-}
-a:visited{
-  color: #a4a4a4;
+a:link, a:hover, a:active, a:visited{
+  color: #004b97;
 }
 
 body {
@@ -21,8 +18,8 @@ body {
     margin: 0 0 0 -98px;
     padding: 0;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Times', sans-serif;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 22px;
     color: #353535;
 }
 
@@ -55,6 +52,7 @@ body {
 
 #page{
   background: white;
+  border: 2px solid #b2b2b2;
   border-radius: 12px;
   padding: 50px;
   min-height: 450px;
@@ -80,15 +78,22 @@ body {
 #page p{
   margin: 0 0 23px 0;
 }
+#intro{
+  font-size: 15px;
+  line-height: 23px;
+}
 
 #page span.sidenote{
   font-size: 0.8em;
 }
+
 #generate-form{
   background: url('../images/bgform.png') 0 0 repeat-x;
   height: 123px; /* image height - 2xpadding */
+  border: 1px solid #ddd;
   border-radius: 12px;
   padding: 25px;
+  font-size: 14px;
 
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
@@ -117,13 +122,13 @@ body {
   margin: 0;
   border: 0;
   border-radius: 4px;
-  padding: 5px 20px 5px 20px;
+  padding: 5px 10px 5px 10px;
   float: right;
   background: url('../images/bgbtn.png') repeat-x;
   height: 30px;
   color: white;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 #generate-form #error{
@@ -152,6 +157,7 @@ body {
   padding: 0;
   text-align: right;
   list-style: none;
+  font-size: 13px;
 }
 
 #footer ul li, #playground ul#topnav li{
@@ -167,7 +173,7 @@ body {
 
 #footer p{
   line-height: normal;
-  font-size: 14px;
+  font-size: 12px;
   margin: 11px 0 0 0;
   padding: 11px 0 0 0;
   border-top: 1px solid #d3d3d3;
@@ -201,6 +207,7 @@ a#tryagain {
   padding: 25px;
   margin: 25px 0 0 0;
   font-size: 0.9em;
+  border: 1px solid #ddd;
 
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;

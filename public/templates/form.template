@@ -27,7 +27,7 @@
   if (pageTracker)
     pageTracker._trackPageview("/form");
 </script>
-<p>Generate an anonymous alias that will forward to your real email
+<p id="intro">Generate an anonymous alias that will forward to your real email
   address. It will automatically be deleted after either your set time
   or message limit has been reached.
   <span class="sidenote">(<a href="#!/about">What is this good for?</a>)</span></p>
