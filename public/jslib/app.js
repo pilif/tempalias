@@ -7,11 +7,39 @@ Tempalias = {};
     spy = spy || 'default';
     $('#spy')[0].className = spy;
   };
+
+  // please excuse the really bad pun, but I just. could. not. resist.
+  Tempalias.bakery = {};
+  Tempalias.bakery = (function(){
+    return {
+      bakeCookie: function(name, value, days){
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime()+(days*24*60*60*1000));
+          expires = "; expires="+date.toGMTString();
+        }
+        document.cookie = name+"="+value+expires+"; path=/";
+      },
+      fetchCookie: function(name){
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') c = c.substring(1,c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+      },
+      eatCookie: function(name) {
+	      Tempalias.bakery.bakeCookie(name,"",-1);
+}     }
+  }());
   Tempalias.app = $.sammy((function(){
     return function(){
       this.helpers({
         e: function(t){
-          t = t || '';
+          t = t ? t+"" : '';
           return t.replace(/&/g, "&amp;")
               .replace(/</g, "&lt;")
               .replace(/>/g, "&gt;")
@@ -23,7 +51,11 @@ Tempalias = {};
       this.template_engine = 'Sammy.Template';
 
       this.get('#/', function(context){
-        this.partial('templates/form.template', {target: null, days: null, maxUsage: null});
+        var preset = Tempalias.bakery.fetchCookie('preset');
+        if (preset){
+          preset = JSON.parse(preset);
+        }
+        this.partial('templates/form.template', {preset: preset});
         this.app.last_location = null;
       });
 
@@ -66,6 +98,8 @@ Tempalias = {};
           setTimeout(function(){e.fadeOut('slow');}, 1000);
           return;
         }
+        var aliasString = JSON.stringify(alias);
+        Tempalias.bakery.bakeCookie('preset', aliasString, 60);
 
         $.ajax({
           url: '/aliases',
@@ -73,7 +107,7 @@ Tempalias = {};
           dataType: 'json',
           processData: false,
           contentType: 'application/json',
-          data: JSON.stringify(alias),
+          data: aliasString,
           success: function(data) {
              context.partial('templates/result.template', {alias: data});
           },

@@ -37,13 +37,13 @@
     <table>
       <tr id="target_selection">
         <th>Your real email:</th>
-        <td><input type="text" name="target" id="target" value="<%= e(target) %>" /></td>
+        <td><input type="text" name="target" id="target" value="<%= e(preset.target) %>" /></td>
       </tr>
       <tr id="validity_selection">
         <th>Alias valid for:</th>
         <td>
-          <input type="text" name="days" id="days" value="<%= e(days) %>" /> day(s) or
-          <input type="text" name="max-usage" id="max-usage" value="<%= e(maxUsage) %>" /> received messages
+          <input type="text" name="days" id="days" value="<%= e(preset.days) %>" /> day(s) or
+          <input type="text" name="max-usage" id="max-usage" value="<%= e(preset['max-usage']) %>" /> received messages
         </td>
       </tr>
     </table>
