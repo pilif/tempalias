@@ -54,6 +54,8 @@ Tempalias = {};
         var preset = Tempalias.bakery.fetchCookie('preset');
         if (preset){
           preset = JSON.parse(preset);
+        }else{
+          preset = {};
         }
         this.partial('templates/form.template', {preset: preset});
         this.app.last_location = null;
