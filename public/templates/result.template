@@ -1,6 +1,9 @@
 <script type="text/javascript">
   jQuery(function(){
     Tempalias.setSpy('happy');
+    $('#bookmarklet').click(function(){
+        return false;
+    });
   });
   if (pageTracker)
     pageTracker._trackPageview("/result");
@@ -19,8 +22,15 @@ All done! Your temporary alias is:
   <% }else{ %>
     After <strong><%= alias['max_usage'] %> messages</strong> have been received,
   <% } %>
-    this alias will be deleted automatically, irreversibly and without a trace
-    for the sender.
+    this alias will be deleted automatically, irreversibly and without a trace.
+</p>
+<h3>Generate tempaliases on the fly</h3>
+<p>If you would like to generate tempaliases <em>with these settings</em> without first
+visiting tempalias.com, drag this bookmarklet to your browser's bookmark bar and click
+it whenever  you encounter a registration form:
+
+<a href="javascript:(function(){var c = {h: '<%= window.location.host %>'<% if(alias.days){ %>, d:<%= alias.days %><% } %>, t:'<%= alias.target %>'<% if (alias['max_usage']){ %>, u:<%= alias['max_usage'] %><% } %>};if (window.$__tempalias_com){window.$__tempalias_com(c);}else{var s=document.createElement('script');s.src='http://<%= window.location.host %>/bookmarklet.js';s.onload = function(){window.$__tempalias_com(c);};document.getElementsByTagName('head')[0].appendChild(s);}})();" id="bookmarklet">tempalias</a>
+
 </p>
 </div>
 <a id="tryagain" href="#!/form">Need another?</a>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>tempalias - Temporary Email Aliases</title>
+  <link rel="stylesheet" type="text/css" href="styles/bm_help.css"/>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="help-box">
+  <h1>tempalias</h1>
+  <p>Click the email field to insert a tempalias for<br />
+  <strong id="target">gnegg@blepp.ch</strong><br />
+  valid for <span id="validity">5 days or 3 messages</span>.
+  </p>
+  <p class="sidenote">(Change these settings at <a target="_top" href="/">tempalias.com</a>)</p>
+</div>
+
+<script type="text/javascript">
+  (function(){
+    var e = function(t){
+          t = t ? t+"" : '';
+          return t.replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot");
+    };
+
+    var query = function () {
+      var params = {}, pair, name, value;
+
+      var qs = location.search.substring(1, location.search.length);
+      if (qs.length == 0) return params;
+
+      qs = qs.replace(/\+/g, ' ');
+      var args = qs.split('&');
+
+      for (var i = 0; i < args.length; i++) {
+        pair = args[i].split('=');
+        name = decodeURIComponent(pair[0]);
+
+        value = (pair.length==2)
+          ? decodeURIComponent(pair[1])
+          : name;
+
+        params[name] = value;
+      }
+      return params;
+    }();
+
+    $(function(){
+      var validity = "";
+      $('#target').text(query['t']);
+      if (query['days'] && query['max-usage']){
+        validity = '<span>' + e(query['d'])+' days</span> or <span>' + e(query['u']) + '</span> messages';
+      }else if (query['d']){
+        validity = '<span>' + e(query['d']) +' days</span>';
+      }else if (query['max-usage']){
+        validity = '<span>' + e(query['u']) +' messages</span>';
+      }
+      $('#validity').html(validity);
+    })
+  })();
+</script>
+
+<!--
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-445922-4");
+pageTracker._trackPageview();
+} catch(err) {}</script> -->
+
+</body>
+</html>
