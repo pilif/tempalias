@@ -10,14 +10,16 @@
       
       function off(el){
         $(el)
-          .unwrap()
+          .css('background-color', el.oldbg)
           .removeClass('__ta_highlight');
       }
       
       $('input[type=text]').live('mouseenter.ta', function(){
-        $(this)
-            .wrap('<span class="__ta_highlight" style="border: 4px solid red; color: red;">')
-            .addClass('__ta_highlight');
+        var el = $(this);
+        el[0].oldbg = el.css('background-color');
+        el
+          .css('background-color', '#72a100')
+          .addClass('__ta_highlight');
       });
       $('input[type=text]').live('mouseleave.ta', function(){
         off(this);
