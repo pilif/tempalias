@@ -7,6 +7,32 @@
         .die('mouseenter.ta')
         .die('mouseleave.ta')
         .die('click.ta');      
+
+      function showFrame(){
+        var f = $('#__ta_helpwin');
+        if (f.length == 0)
+        f = $('<iframe>')
+          .hide() // initially hide to remove flicker
+          .attr({
+            src: "http://"+adata.h+"/bm_help.html?t="+adata.t+'&u='+adata.u+'&d='+adata.d,
+            frameborder: 0,
+            id: '__ta_helpwin',
+            scrolling: "no",
+            width: 414,
+            height: 214
+          })
+          .css({
+            position: "fixed", // I know. ie doesn't support it. I don't care
+            top: 10,
+            left: $(document).width()-424,
+            "z-index": 22000
+          })
+          .appendTo('body')
+          .load(function(){
+            f.show();
+          });
+        return f;
+      }
       
       function off(el){
         $(el)
@@ -39,8 +65,11 @@
         $.getJSON("http://"+adata.h+'/aliases?callback=?', r, function(res){
           var addr = (res && res.aid) ? res.aid + '@tempalias.com' : '(error)';
           input.value = addr;
+          $('#__ta_helpwin').remove();
         });
       });
+      showFrame();
+
     };
     if (ta_jquery){
       tempalias(ta_jquery);
