@@ -51,11 +51,11 @@
     $(function(){
       var validity = "";
       $('#target').text(query['t']);
-      if (query['days'] && query['max-usage']){
+      if (query['d'] && query['u']){
         validity = '<span>' + e(query['d'])+' days</span> or <span>' + e(query['u']) + '</span> messages';
       }else if (query['d']){
         validity = '<span>' + e(query['d']) +' days</span>';
-      }else if (query['max-usage']){
+      }else if (query['u']){
         validity = '<span>' + e(query['u']) +' messages</span>';
       }
       $('#validity').html(validity);
