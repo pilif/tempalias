@@ -202,7 +202,7 @@ a#tryagain {
 
 #alias-generated{
   background: url('../images/bgdone.png') 0 0 repeat-x;
-  height: 123px; /* image height - 2xpadding */
+  height: 253px; /* image height - 2xpadding -2xborder */
   border-radius: 12px;
   padding: 25px;
   margin: 25px 0 0 0;
@@ -211,6 +211,11 @@ a#tryagain {
 
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
+}
+
+#alias-generated h3{
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 #alias-generated #alias{
