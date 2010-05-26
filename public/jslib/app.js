@@ -94,6 +94,12 @@ Tempalias = {};
           days:  valn($('#days').val()),
           "max-usage": valn($('#max-usage').val())
         };
+
+        // limit to sane defaults. we are TEMPalias. not
+        // unlimited free alias :p
+        if (alias['max-usage']) alias['max-usage'] = Math.min(100, alias['max-usage']);
+        if (alias['days']) alias['days'] = Math.min(60, alias['days']);
+
         if (!alias.target || (!alias.days && !alias['max-usage'])){
           var e = $('#error');
           e.show();
