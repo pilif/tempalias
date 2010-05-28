@@ -10,11 +10,16 @@
 
       function showFrame(){
         var f = $('#__ta_helpwin');
+        var url = "http://"+adata.h+"/bm_help.html?t="+adata.t+"&";
+        var ac = [];
+        if (adata.u) ac[ac.length] = 'u='+adata.u;
+        if (adata.d) ac[ac.length] = 'd='+adata.d;
+        url = url + ac.join('&');
         if (f.length == 0)
         f = $('<iframe>')
           .hide() // initially hide to remove flicker
           .attr({
-            src: "http://"+adata.h+"/bm_help.html?t="+adata.t+'&u='+adata.u+'&d='+adata.d,
+            src: url,
             frameborder: 0,
             id: '__ta_helpwin',
             scrolling: "no",
