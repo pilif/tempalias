@@ -3,13 +3,11 @@ require.paths.unshift('../deps/redis-node-client/lib');
 
 var sys = require('sys');
 var aliasProvider = require('tempalias').AliasProvider;
-var client = require('redis').client;
+var client = require('redis').saveClient;
 
-require('redis').client(function(client){
-  aliasProvider.findById(process.argv[2], true, function(alias){
-    sys.p(alias);
-    client.close();
-  });
+aliasProvider.findById(process.argv[2], true, function(alias){
+  sys.puts(sys.inspect(alias));
+  client.close();
 });
 
 
