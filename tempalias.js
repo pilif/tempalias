@@ -12,15 +12,13 @@ process.addListener('uncaughtException', function (err) {
 });
 
 var launch = function(){
-  require('redis').client(function(client){
-    fs.writeFile(config.general.pidFile, ""+process.pid, function(err, data){
-        if (err){
-            sys.error("Failed to write PID file ("+ config.general.pidFile+"): " + err);
-            process.exit(1);
-        }
-        require('tempalias_http');
-        require('tempalias_smtp');
-    });
+  fs.writeFile(config.general.pidFile, ""+process.pid, function(err, data){
+      if (err){
+          sys.error("Failed to write PID file ("+ config.general.pidFile+"): " + err);
+          process.exit(1);
+      }
+      require('tempalias_http');
+      require('tempalias_smtp');
   });
 };
 
