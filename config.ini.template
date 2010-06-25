@@ -10,6 +10,7 @@ smarthost=mail.example.com          ; smarthost to use (mandatory!)
 bannerHostname=nodesmtp.example.com ; banner to use in SMTP transaction (mandatory!)
 maxlength=102400                    ; maximum message size accepted
 domains=tempalias.com,tempalias.net ; domains considered local. comma separated
+rbls=examplea.com,exampleb.com      ; rbl domains to check for SMTP
 
 [general]
 pidFile=./tempalias.pid
