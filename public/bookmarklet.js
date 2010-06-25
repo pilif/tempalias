@@ -6,7 +6,7 @@
       $('input[type=text]')
         .die('mouseenter.ta')
         .die('mouseleave.ta')
-        .die('click.ta');      
+        .die('click.ta');
 
       function showFrame(){
         var f = $('#__ta_helpwin');
@@ -38,13 +38,13 @@
           });
         return f;
       }
-      
+
       function off(el){
         $(el)
           .css('background-color', el.oldbg)
           .removeClass('__ta_highlight');
       }
-      
+
       $('input[type=text]').live('mouseenter.ta', function(){
         var el = $(this);
 
