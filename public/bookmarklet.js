@@ -69,10 +69,20 @@
           days: adata.d,
           'max-usage': adata.u
         };
-        $.getJSON("http://"+adata.h+'/aliases?callback=?', r, function(res){
-          var addr = (res && res.aid) ? res.aid + '@tempalias.com' : '(error)';
-          input.value = addr;
-          $('#__ta_helpwin').remove();
+        $.ajax({
+              url:"http://"+adata.h+'/aliases?callback=?',
+              data: r,
+              dataType: "json",
+              success: function(res){
+                if (res.error){
+                  addr = '(error: ' + res.description + ')';
+                }else{
+                  addr = (res && res.aid) ? res.aid + '@tempalias.com' : '(error)';
+                }
+                input.value = addr;
+                off(input);
+                $('#__ta_helpwin').remove();
+              }
         });
       });
       showFrame();
