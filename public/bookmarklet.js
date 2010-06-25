@@ -82,7 +82,7 @@
       tempalias(ta_jquery);
     }
 
-    if (window.jQuery && (window.jQuery.jquery == '1.4.2')){
+    if (window.jQuery && (window.jQuery().jquery == '1.4.2')){
       ta_jquery = window.jQuery;
       tempalias(ta_jquery);
     }else{
