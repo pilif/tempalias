@@ -1,6 +1,7 @@
 [http]
 port=8080                           ; port to listen on for HTTP
 listen=127.0.0.1                    ; interface to bind webserver to (empty for all)
+rate_limit=30000                    ; time users have to wait before generating another alias
 
 [smtp]
 port=2525                           ; port to listen on for SMTP
