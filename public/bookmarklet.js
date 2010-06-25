@@ -47,7 +47,9 @@
       
       $('input[type=text]').live('mouseenter.ta', function(){
         var el = $(this);
-        el[0].oldbg = el.css('background-color');
+
+        if (!el[0].oldbg)
+          el[0].oldbg = el.css('background-color');
         el
           .css('background-color', '#72a100')
           .addClass('__ta_highlight');
