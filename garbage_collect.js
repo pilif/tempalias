@@ -2,17 +2,18 @@ require.paths.unshift('lib');
 require.paths.unshift('./deps/redis-node-client/lib');
 
 var sys = require('sys'),
-    tempalias = require('tempalias');
+    tempalias = require('tempalias'),
+    p = tempalias.AliasProvider,
+    redis = require('redis').saveClient;
 
-var p = tempalias.AliasProvider;
 
-require('redis').client(function(client){
-  client.keys('aliases:*', function(err, data){
+function prune_aliases(){
+  redis.keys('aliases:*', function(data){
     var i, aid, qc = 0, garbage = [];
-
-    if (err){
-      sys.error('Error while retrieving aliases: '+err.message);
-      process.exit(1);
+    if (!data){
+      sys.puts('No aliases found');
+      prune_rate_limits();
+      return;
     }
 
     for (i = 0; i < data.length; i++){
@@ -27,18 +28,54 @@ require('redis').client(function(client){
           if (qc == data.length){
             if (garbage.length > 0){
               sys.puts("Pruning: "+garbage.join(', '));
-              garbage[garbage.length] = function(err, data){
-                sys.p(data + ' sets removed');
-                client.close();
-              }
-              client.del.apply(client, garbage);
+              garbage[garbage.length] = function(data){
+                sys.puts(data + ' sets removed');
+                prune_rate_limits();
+              };
+              redis.del.apply(redis, garbage);
             }else{
-              sys.puts("Nothing to prune");
-              client.close();
+              sys.puts("No aliases to prune");
+              prune_rate_limits();
             }
           }
         });
       }(""+data[i]));
     }
   });
-});
+}
+
+function prune_rate_limits(){
+  redis.keys('lock:*', function(locks){
+    var i = 0, garbage = [], gc=0;
+    if (!locks){
+      sys.puts("No locks found");
+      redis.close();
+      return;
+    }
+    for (i = 0; i < locks.length; i++){
+      (function(lockset){
+        redis.get(lockset, function(exp){
+          gc++;
+          if (exp < (new Date()).getTime()){
+            garbage.unshift(lockset);
+          }
+          if (gc >= locks.length){
+            if (garbage.length > 0){
+              sys.puts("Pruning: "+garbage.join(', '));
+              garbage[garbage.length] = function(data){
+                sys.puts(data + ' sets removed');
+                redis.close();
+              };
+              redis.del.apply(redis, garbage);
+            }else{
+              sys.puts('No rate locks to prune');
+              redis.close();
+            }
+          }
+        });
+      }(""+locks[i]));
+    }
+  });
+}
+
+prune_aliases();
