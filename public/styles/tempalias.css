@@ -42,7 +42,7 @@ body {
 
 
 #page-container{
-  margin: 90px auto 0 auto;
+  margin: 40px auto 0 auto;
   width: 728px;
   background: transparent url('../images/frame_reflection.png') 98px bottom no-repeat;
   padding-bottom: 32px; /* image.height - #spy.paddingBottom */
@@ -54,7 +54,7 @@ body {
   background: white;
   border: 2px solid #b2b2b2;
   border-radius: 12px;
-  padding: 50px;
+  padding: 30px;
   min-height: 450px;
 
   -moz-border-radius: 12px;
@@ -66,7 +66,7 @@ body {
   height: 62px;
   background: #fff url('../images/logo.png') no-repeat;
   text-indent: -999px;
-  margin: 0 0 35px 0;
+  margin: 0 0 20px 0;
 }
 
 #page h2{
@@ -149,7 +149,7 @@ body {
 }
 
 #footer{
-  margin: 66px 0 0 0 ;
+  margin: 50px 0 0 0 ;
 }
 
 #footer ul, #playground ul#topnav{
