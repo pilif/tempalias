@@ -63,7 +63,6 @@
   })();
 </script>
 
-<!--
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -71,8 +70,10 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 <script type="text/javascript">
 try {
 var pageTracker = _gat._getTracker("UA-445922-4");
-pageTracker._trackPageview();
-} catch(err) {}</script> -->
+// I don't want to log the get parameters as they contain possibly
+// sensitive information (target email address)
+pageTracker._trackPageview('/bookmarklet');
+} catch(err) {}</script>
 
 </body>
 </html>
