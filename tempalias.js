@@ -9,6 +9,7 @@ var sys = require('sys');
 
 process.addListener('uncaughtException', function (err) {
   sys.error('Caught exception: ' + err);
+  sys.error(err.stack);
 });
 
 var launch = function(){
